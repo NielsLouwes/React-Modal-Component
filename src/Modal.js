@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 const ModalBackground = styled.div`
@@ -19,13 +20,21 @@ const ModalBody = styled.div`
 `;
 
 export const Modal = ({ children }) => {
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <>
-      <ModalBackground>
-        <ModalBody>
-          <>{children}</>
-        </ModalBody>
-      </ModalBackground>
+      <button onClick={() => setShowModal(true)}>Open Modal</button>
+      {showModal && (
+        <>
+          <ModalBackground onClick={() => setShowModal(false)}>
+            <ModalBody onClick={(e) => e.stopPropagation()}>
+              <button onClick={() => setShowModal(false)}>Hide Modal</button>
+              {children}
+            </ModalBody>
+          </ModalBackground>
+        </>
+      )}
     </>
   );
 };
