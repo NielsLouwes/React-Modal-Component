@@ -1,4 +1,5 @@
 import { Modal } from "./Modal";
+import { LargeProductListItem } from "./products/LargeProductListItem";
 
 const products = [
   {
@@ -23,10 +24,10 @@ const products = [
 
 export default function App() {
   return (
-    <div className="App">
+    <>
       <Modal>
-        <p children={products[0]}></p>
+        <LargeProductListItem product={products[0]} />
       </Modal>
-    </div>
+    </>
   );
 }
